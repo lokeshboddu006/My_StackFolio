@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokesh Boddu | Software Engineer Intern</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- GSAP 3 — Kinetic Typography & Magnetic Effects -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <!-- Lenis — Buttery Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+    <style>
+        :root {
+            --bg-deep: #02040a;
+            --accent: #2dd4bf;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --transition-curve: cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-deep);
+            color: #cbd5e1;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- PRELOADER MODULE STYLES --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s var(--transition-curve), visibility 1s;
+            overflow: hidden;
+        }
+
+        .pre-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.35;
+            z-index: 0;
+            animation: pre-pulse 10s infinite alternate ease-in-out;
+        }
+
+        .pre-orb-1 {
+            width: 550px;
+            height: 550px;
+            background: #1e40af;
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .pre-orb-2 {
+            width: 650px;
+            height: 650px;
+            background: #065f46;
+            bottom: 10%;
+            right: 5%;
+            animation-delay: -4s;
+        }
+
+        @keyframes pre-pulse {
+            from {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.25;
+            }
+
+            to {
+                transform: translate(50px, -30px) scale(1.1);
+                opacity: 0.45;
+            }
+        }
+
+        .preloader-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .loader-brand {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -0.05em;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+        }
+
+        .loader-status {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 2rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 99px;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #2dd4bf, #3b82f6);
+            transition: width 0.4s ease;
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.6);
+        }
+
+        .percentage-counter {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #2dd4bf;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* --- END PRELOADER STYLES --- */
+
+        /* Fixed Premium Blurred Mesh Background */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #010206;
+            overflow: hidden;
+        }
+
+        /* Animated Blurred Orbs for Premium Look */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            top: -10%;
+            left: -5%;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: #3b82f6;
+            bottom: -10%;
+            right: -5%;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: #8b5cf6;
+            top: 40%;
+            left: 30%;
+            opacity: 0.08;
+        }
+
+        @keyframes float {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(60px, 40px) scale(1.1);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        .active-nav {
+            color: var(--accent) !important;
+        }
+
+        .nav-pill {
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--accent);
+            border-radius: 99px;
+            box-shadow: 0 0 15px var(--accent);
+        }
+
+        /* --- DIRECTIONAL SECTION SLIDE TRANSITIONS --- */
+        section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.7s var(--transition-curve), transform 0.7s var(--transition-curve);
+        }
+
+        section.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0) scale(1) !important;
+        }
+
+        /* State modifiers for entrance direction */
+        .from-right {
+            transform: translateX(80px);
+        }
+
+        .from-left {
+            transform: translateX(-80px);
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(45, 212, 191, 0.4);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Modal Dynamics - Updated for high blur background */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            display: none;
+            background: rgba(2, 4, 10, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-container {
+            background: #0b101d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2.5rem;
+            width: 100%;
+            max-width: 70rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        input:-webkit-autofill {
+            -webkit-text-fill-color: white !important;
+            -webkit-box-shadow: 0 0 0px 1000px #0b0f1a inset !important;
+        }
+
+        /* Certificate Modal Specific Styles */
+        .cert-glow {
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.15) 0%, transparent 70%);
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        /* Ultra Pro Print Mode (Optimized for exactly 1 page) */
+        @media print {
+            @page {
+                margin: 0.3cm;
+                size: A4;
+            }
+
+            .print-hidden,
+            nav,
+            footer,
+            .bg-glow,
+            .orb {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: #111 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            section {
+                display: none !important;
+            }
+
+            #resume-section {
+                display: block !important;
+                opacity: 1 !important;
+                transform: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .resume-card {
+                border: none !important;
+                box-shadow: none !important;
+                background: white !important;
+                color: #111 !important;
+                padding: 0.5rem !important;
+                border-radius: 0 !important;
+                width: 100% !important;
+            }
+
+            /* Force 3-column layout exactly as in screenshot */
+            .grid.md\:grid-cols-3 {
+                display: grid !important;
+                grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                gap: 1rem !important;
+                width: 100% !important;
+            }
+
+            .md\:col-span-2 {
+                grid-column: span 2 / span 2 !important;
+            }
+
+            /* Tighten Vertical Gaps for Single Page Fit */
+            #resume-section .py-16 {
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+
+            #resume-section .pb-16 {
+                padding-bottom: 0.25rem !important;
+            }
+
+            #resume-section .pt-10 {
+                padding-top: 0.25rem !important;
+            }
+
+            #resume-section .space-y-16> :not([hidden])~ :not([hidden]) {
+                margin-top: 0.75rem !important;
+            }
+
+            #resume-section .space-y-10> :not([hidden])~ :not([hidden]) {
+                margin-top: 0.4rem !important;
+            }
+
+            #resume-section .mb-10 {
+                margin-bottom: 0.2rem !important;
+            }
+
+            #resume-section .mb-8 {
+                margin-bottom: 0.15rem !important;
+            }
+
+            #resume-section .mt-8 {
+                margin-top: 0.2rem !important;
+            }
+
+            /* Typography Scaling for Print - ULTRA COMPACT */
+            h2.text-7xl {
+                font-size: 2.2rem !important;
+                margin-bottom: 0 !important;
+                line-height: 1 !important;
+            }
+
+            h4.text-2xl {
+                font-size: 0.95rem !important;
+                line-height: 1 !important;
+                margin-bottom: 0.1rem !important;
+            }
+
+            h4.text-xl {
+                font-size: 0.85rem !important;
+                margin-bottom: 0.05rem !important;
+            }
+
+            .text-teal-600 {
+                color: #0d9488 !important;
+                font-weight: 800 !important;
+            }
+
+            .border-slate-100 {
+                border-bottom: 1px solid #e2e8f0 !important;
+            }
+
+            .text-md {
+                font-size: 0.7rem !important;
+                line-height: 1.1 !important;
+            }
+
+            .text-xs {
+                font-size: 0.65rem !important;
+            }
+
+            .text-\[12px\] {
+                font-size: 0.65rem !important;
+            }
+
+            .text-\[11px\] {
+                font-size: 0.6rem !important;
+            }
+
+            .text-\[10px\] {
+                font-size: 0.55rem !important;
+            }
+
+            .text-\[9px\] {
+                font-size: 0.5rem !important;
+            }
+
+            /* Prevent orphan headings and messy breaks */
+            #resume-main>div,
+            #resume-side>div,
+            .space-y-2 {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            .glass-card {
+                background: transparent !important;
+                border: none !important;
+                backdrop-filter: none !important;
+            }
+
+            /* Tighten contact list */
+            .mt-8.flex.flex-wrap {
+                margin-top: 0.5rem !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        /* =====================================================
+           PREMIUM VISUAL ENHANCEMENT MODULE
+           ===================================================== */
+
+        /* --- Enhanced Background --- */
+        .bg-glow {
+            background: #01020d;
+        }
+
+        .orb-1 {
+            width: 720px;
+            height: 720px;
+            opacity: 0.18;
+        }
+
+        .orb-2 {
+            opacity: 0.14;
+        }
+
+        .orb-3 {
+            opacity: 0.11;
+            width: 480px;
+            height: 480px;
+        }
+
+        .bg-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(45, 212, 191, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(45, 212, 191, 0.018) 1px, transparent 1px);
+            background-size: 70px 70px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb-4 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #6d28d9, #4f46e5);
+            top: 58%;
+            right: 6%;
+            opacity: 0.09;
+            animation-delay: -6s;
+        }
+
+        .orb-5 {
+            width: 380px;
+            height: 380px;
+            background: radial-gradient(circle, #0891b2, #06b6d4);
+            bottom: 18%;
+            left: 10%;
+            opacity: 0.08;
+            animation-delay: -14s;
+        }
+
+        .aurora {
+            position: absolute;
+            width: 130%;
+            height: 45%;
+            top: -8%;
+            left: -15%;
+            background: linear-gradient(108deg,
+                    transparent 12%,
+                    rgba(45, 212, 191, 0.048) 32%,
+                    rgba(59, 130, 246, 0.055) 52%,
+                    rgba(139, 92, 246, 0.038) 72%,
+                    transparent 92%);
+            filter: blur(38px);
+            animation: aurora-drift 20s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes aurora-drift {
+            0% {
+                transform: translateX(-8%) scaleY(1) rotate(-1.5deg);
+                opacity: 0.55;
+            }
+
+            50% {
+                transform: translateX(4%) scaleY(1.28) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(9%) scaleY(0.82) rotate(1.5deg);
+                opacity: 0.65;
+            }
+        }
+
+        /* Mouse spotlight */
+        #bg-spotlight {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%),
+                    rgba(45, 212, 191, 0.05),
+                    transparent 70%);
+        }
+
+        /* --- Custom Cursor (desktop only) --- */
+        @media (hover: hover) {
+            body {
+                cursor: none;
+            }
+
+            a,
+            button,
+            [onclick] {
+                cursor: none;
+            }
+        }
+
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out;
+            left: 0;
+            top: 0;
+        }
+
+        /* --- Scroll Progress Bar --- */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(90deg, #2dd4bf, #3b82f6, #8b5cf6);
+            z-index: 10000;
+            box-shadow: 0 0 14px rgba(45, 212, 191, 0.8);
+            pointer-events: none;
+            transition: width .08s linear;
+        }
+
+        /* --- Full-Screen Three.js Canvas --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- Kinetic Typography Chars --- */
+        .char {
+            display: inline-block;
+            will-change: transform;
+        }
+
+        /* --- Premium Card Hover Enhancement --- */
+        .glass-card:hover {
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55), 0 0 70px rgba(45, 212, 191, 0.07);
+        }
+
+        /* --- Nav Pill Glow --- */
+        .nav-pill {
+            box-shadow: 0 0 16px var(--accent), 0 0 32px rgba(45, 212, 191, 0.3);
+        }
+
+        /* --- Prefers Reduced Motion ---  */
+        @media (prefers-reduced-motion: reduce) {
+
+            .aurora,
+            .orb {
+                animation: none !important;
+            }
+
+            #cursor {
+                display: none !important;
+            }
+
+            body,
+            a,
+            button,
+            [onclick] {
+                cursor: auto !important;
+            }
+        }
+
+        /* --- Skill Pills --- */
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(148, 163, 184, 0.9);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+        }
+
+        .skill-pill:hover {
+            color: #2dd4bf;
+            border-color: rgba(45, 212, 191, 0.3);
+            background: rgba(45, 212, 191, 0.06);
+        }
+
+        /* --- Bounce Slow --- */
+        @keyframes bounce-slow {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(3deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(3deg);
+            }
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-teal-500/30">
+
+    <!-- Premium Enhancement Elements -->
+    <div id="cursor"></div>
+    <div id="scroll-progress"></div>
+    <div id="bg-spotlight"></div>
+    <div id="canvas-container"></div>
+
+    <!-- Preloader Structure -->
+    <div id="preloader">
+        <div class="pre-orb pre-orb-1"></div>
+        <div class="pre-orb pre-orb-2"></div>
+
+        <div class="preloader-content">
+            <div class="loader-brand">Lokesh Boddu</div>
+            <div class="loader-status">Turning Vision Into Code...</div>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <div class="percentage-counter"><span id="percentage">0</span>%</div>
+        </div>
+    </div>
+
+    <div class="bg-glow">
+        <div class="aurora"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-[#02040a]/80 backdrop-blur-xl border-b border-white/5 h-20 print-hidden text-left">
+        <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center text-left">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="navigateTo('home')">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-xl flex items-center justify-center text-[#02040a] font-black text-xl shadow-lg group-hover:rotate-12 transition-transform">
+                    L</div>
+                <span
+                    class="text-xl font-bold tracking-tight text-white group-hover:text-teal-400 transition-colors uppercase">Lokesh
+                    Boddu.</span>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <button onclick="navigateTo('home')" data-nav="home"
+                    class="nav-btn active-nav text-[10px] font-black tracking-[0.2em] uppercase transition-all relative py-2 text-slate-500 hover:text-white">Home
+                    <div class="nav-pill"></div>
+                </button>
+                <button onclick="navigateTo('about')" data-nav="about"
+                    class="nav-btn text-[10px] font-black tracking-[0.2em] uppercase transition-all relative py-2 text-slate-500 hover:text-white">About</button>
+                <button onclick="navigateTo('certifications')" data-nav="certifications"
+                    class="nav-btn text-[10px] font-black tracking-[0.2em] uppercase transition-all relative py-2 text-slate-500 hover:text-white">Certifications</button>
+                <button onclick="navigateTo('projects')" data-nav="projects"
+                    class="nav-btn text-[10px] font-black tracking-[0.2em] uppercase transition-all relative py-2 text-slate-500 hover:text-white">Projects</button>
+                <button onclick="navigateTo('research')" data-nav="research"
+                    class="nav-btn text-[10px] font-black tracking-[0.2em] uppercase transition-all relative py-2 text-slate-500 hover:text-white">Research</button>
+                <button onclick="navigateTo('contact')" data-nav="contact"
+                    class="nav-btn text-[10px] font-black tracking-[0.2em] uppercase transition-all relative py-2 text-slate-500 hover:text-white">Contact</button>
+                <button onclick="navigateTo('resume')"
+                    class="bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 text-teal-400 px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all">Resume</button>
+            </div>
+
+            <button class="lg:hidden text-white p-2" onclick="toggleMenu(true)">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-[#02040a] hidden flex-col p-8 print-hidden">
+        <div class="flex justify-between items-center mb-12">
+            <span class="text-2xl font-black text-white uppercase tracking-widest">Navigation</span>
+            <button onclick="toggleMenu(false)" class="p-2 bg-white/5 rounded-full text-teal-400"><i
+                    data-lucide="x"></i></button>
+        </div>
+        <div class="flex flex-col gap-6">
+            <button onclick="navigateTo('home')"
+                class="text-4xl font-black uppercase tracking-tighter text-left hover:text-teal-400 transition-colors">Home</button>
+            <button onclick="navigateTo('about')"
+                class="text-4xl font-black uppercase tracking-tighter text-left hover:text-teal-400 transition-colors">About</button>
+            <button onclick="navigateTo('certifications')"
+                class="text-4xl font-black uppercase tracking-tighter text-left hover:text-teal-400 transition-colors">Certifications</button>
+            <button onclick="navigateTo('projects')"
+                class="text-4xl font-black uppercase tracking-tighter text-left hover:text-teal-400 transition-colors">Projects</button>
+            <button onclick="navigateTo('research')"
+                class="text-4xl font-black uppercase tracking-tighter text-left hover:text-teal-400 transition-colors">Research</button>
+            <button onclick="navigateTo('contact')"
+                class="text-4xl font-black uppercase tracking-tighter text-left hover:text-teal-400 transition-colors">Contact</button>
+            <button onclick="navigateTo('resume')"
+                class="text-4xl font-black uppercase tracking-tighter text-left text-teal-500 transition-colors">Resume</button>
+        </div>
+    </div>
+
+    <!-- Generic Modal Wrapper (Used for Projects and Certs) -->
+    <div id="generic-modal" class="modal-overlay" onclick="closeGenericModal(event)">
+        <div id="generic-modal-container" class="modal-container" onclick="event.stopPropagation()">
+            <button onclick="closeGenericModal(null)"
+                class="sticky top-6 float-right mr-6 p-3 bg-white/5 hover:bg-white/10 rounded-full text-white transition-colors z-50">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="generic-modal-body" class="p-8 md:p-16 text-left"></div>
+        </div>
+    </div>
+
+    <main class="pt-20">
+        <!-- Home Section -->
+        <section id="home-section" class="active relative max-w-7xl mx-auto px-6 py-24 lg:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                <!-- LEFT COLUMN -->
+                <div class="space-y-8 text-left">
+
+                    <!-- Status badge -->
+                    <div
+                        class="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.25em] text-teal-400 border border-teal-500/20 bg-teal-500/5 px-5 py-2.5 rounded-full">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                        </span>
+                        AWS Data Engineering Intern @ EduSkills
+                    </div>
+
+                    <!-- Typewriter -->
+                    <div class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-[0.25em]">
+                        <span class="text-teal-500 text-base">&gt;</span>
+                        <span id="typewriter-role" class="text-teal-300"></span>
+                        <span class="inline-block w-0.5 h-4 bg-teal-400 animate-pulse ml-0.5"></span>
+                    </div>
+
+                    <!-- Heading -->
+                    <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-[0.88] tracking-tighter">
+                        Architecting
+                        <span
+                            class="block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Data</span>
+                        Systems.
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="text-base md:text-lg text-slate-400 max-w-md leading-relaxed font-medium">
+                        I'm <span class="text-white font-bold border-b border-teal-500/40">Lokesh Boddu</span> — a
+                        high-performance logic enthusiast specialised in AI, Cloud Engineering, and Big Data.
+                    </p>
+
+                    <!-- Available badge -->
+                    <div
+                        class="flex items-center gap-2 text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 w-fit">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Open to Internship &amp; Freelance
+                    </div>
+
+                    <!-- CTA + Socials -->
+                    <div class="flex flex-wrap items-center gap-5">
+                        <button onclick="navigateTo('projects')"
+                            class="group bg-white text-[#02040a] px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-teal-400 transition-all flex items-center gap-3 shadow-xl">
+                            Explore Works
+                            <i data-lucide="arrow-right"
+                                class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                        </button>
+                        <a href="https://github.com/lokeshboddu006" target="_blank"
+                            class="w-11 h-11 rounded-2xl glass-card flex items-center justify-center text-slate-500 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="w-5 h-5">
+                                <path
+                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/lokeshboddu006" target="_blank"
+                            class="w-11 h-11 rounded-2xl glass-card flex items-center justify-center text-slate-500 hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="w-5 h-5">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                        <a href="mailto:lokesh.boddu006@gmail.com"
+                            class="w-11 h-11 rounded-2xl glass-card flex items-center justify-center text-slate-500 hover:text-white transition-colors">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+
+                    <!-- Skill pills -->
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">PySpark</span>
+                        <span class="skill-pill">Kafka</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">TensorFlow</span>
+                        <span class="skill-pill">Docker</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN — Dashboard Card -->
+                <div class="relative hidden lg:flex flex-col gap-0">
+
+                    <!-- Open to work tag -->
+                    <div
+                        class="absolute -top-5 right-4 z-20 bg-teal-500 text-[#02040a] text-[9px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg rotate-3 animate-bounce-slow pointer-events-none">
+                        🚀 Open to Work
+                    </div>
+
+                    <div class="glass-card rounded-[3rem] p-10 relative overflow-hidden flex flex-col gap-8"
+                        style="min-height:520px">
+                        <!-- Watermark text -->
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                            <span class="text-9xl font-black text-white/[0.025] uppercase tracking-tighter">DATA</span>
+                        </div>
+
+                        <!-- Card header -->
+                        <div class="flex items-center justify-between relative z-10">
+                            <div>
+                                <div class="text-[9px] font-black text-teal-400 uppercase tracking-widest mb-1">
+                                    Performance Index</div>
+                                <div class="text-xl font-black text-white tracking-tighter">Grade: A+</div>
+                            </div>
+                            <div
+                                class="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center">
+                                <i data-lucide="activity" class="w-5 h-5 text-teal-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- Skill bars -->
+                        <div class="relative z-10 space-y-3">
+                            <div class="text-[9px] font-black text-slate-500 uppercase tracking-widest">Core
+                                Competencies</div>
+                            <div>
+                                <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1.5">
+                                    <span>Cloud Engineering</span><span class="text-teal-400">95%</span>
+                                </div>
+                                <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="hero-bar h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full"
+                                        style="width:0" data-width="95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1.5"><span>Data
+                                        Engineering</span><span class="text-blue-400">90%</span></div>
+                                <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="hero-bar h-full bg-gradient-to-r from-blue-500 to-indigo-400 rounded-full"
+                                        style="width:0" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] font-bold text-slate-400 mb-1.5"><span>AI /
+                                        ML</span><span class="text-purple-400">82%</span></div>
+                                <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                    <div class="hero-bar h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full"
+                                        style="width:0" data-width="82%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Count stats -->
+                        <div class="grid grid-cols-3 gap-3 relative z-10">
+                            <div class="glass-card rounded-2xl p-4 text-center">
+                                <div class="text-2xl font-black text-white tracking-tighter" data-count="500"
+                                    data-suffix="+">0</div>
+                                <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider mt-1">Tasks
+                                </div>
+                            </div>
+                            <div class="glass-card rounded-2xl p-4 text-center">
+                                <div class="text-2xl font-black text-teal-400 tracking-tighter" data-count="15"
+                                    data-suffix="+">0</div>
+                                <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider mt-1">Certs
+                                </div>
+                            </div>
+                            <div class="glass-card rounded-2xl p-4 text-center">
+                                <div class="text-2xl font-black text-blue-400 tracking-tighter" data-count="6"
+                                    data-suffix="+">0</div>
+                                <div class="text-[9px] font-bold text-slate-500 uppercase tracking-wider mt-1">Projects
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Glow blobs -->
+                        <div
+                            class="absolute -bottom-16 -left-16 w-72 h-72 bg-teal-500/8 blur-[90px] rounded-full pointer-events-none">
+                        </div>
+                        <div
+                            class="absolute -top-8 -right-8 w-56 h-56 bg-blue-500/6 blur-[70px] rounded-full pointer-events-none">
+                        </div>
+                    </div>
+
+                    <!-- Floating mini badge -->
+                    <div
+                        class="absolute -bottom-6 -left-6 z-20 glass-card rounded-3xl px-5 py-4 flex items-center gap-3 border border-teal-500/15 shadow-2xl">
+                        <div class="w-9 h-9 rounded-xl bg-amber-500/20 flex items-center justify-center text-base">🏆
+                        </div>
+                        <div>
+                            <div class="text-xs font-black text-white leading-tight">AWS Academy</div>
+                            <div class="text-[10px] text-slate-500 font-bold">Cloud Foundations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats strip -->
+            <div class="mt-16 pt-10 border-t border-white/5 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+                <div>
+                    <div class="text-3xl font-black text-white tracking-tighter" data-count="500" data-suffix="+">0
+                    </div>
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Logic Tasks</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-teal-400 tracking-tighter" data-count="15" data-suffix="+">0
+                    </div>
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Certifications
+                    </div>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-blue-400 tracking-tighter" data-count="6" data-suffix="+">0
+                    </div>
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Live Projects</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-purple-400 tracking-tighter" data-count="1"
+                        data-suffix=" Papers">0</div>
+                    <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">Research Papers
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div
+                class="absolute bottom-4 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-1.5 text-slate-600 text-[9px] font-bold uppercase tracking-widest">
+                <span>Scroll</span>
+                <div class="w-5 h-8 border border-slate-700 rounded-full flex items-start justify-center pt-1.5">
+                    <div class="w-1 h-2 bg-teal-500 rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Konami Easter Egg Terminal -->
+        <div id="easter-terminal"
+            class="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-xl flex items-center justify-center hidden"
+            onclick="document.getElementById('easter-terminal').classList.add('hidden')">
+            <div class="glass-card rounded-3xl p-8 max-w-lg w-full mx-6 border border-teal-500/30 shadow-2xl"
+                onclick="event.stopPropagation()">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="text-slate-500 text-xs font-mono ml-3">lokesh@portfolio ~ $</span>
+                    <button onclick="document.getElementById('easter-terminal').classList.add('hidden')"
+                        class="ml-auto text-slate-500 hover:text-white text-xl leading-none">&times;</button>
+                </div>
+                <div class="font-mono text-sm space-y-2 text-left" id="terminal-lines"></div>
+            </div>
+        </div>
+
+        <!-- About Section (Elite Identity) -->
+        <section id="about-section" class="max-w-7xl mx-auto px-6 py-20 lg:py-32">
+            <div class="mb-32 space-y-6 text-left">
+                <span
+                    class="text-teal-500 font-black text-[10px] uppercase tracking-[0.8em] mb-4 block animate-pulse">Identity
+                    Analysis</span>
+                <div class="space-y-2">
+                    <h2 class="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none">LOKESH BODDU.
+                    </h2>
+                    <p class="text-xl md:text-3xl font-black text-teal-400 uppercase tracking-tight italic opacity-90">
+                        Systems Architect & Performance Engineer</p>
+                </div>
+                <div class="h-px w-32 bg-gradient-to-r from-teal-500 to-transparent"></div>
+                <p
+                    class="text-lg md:text-xl text-slate-400 max-w-2xl font-medium italic border-l-2 border-teal-500/30 pl-8">
+                    "Scalability is not a post-process feature; it is the fundamental architectural constraint of modern
+                    engineering."
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-20">
+                <div class="lg:col-span-6 space-y-24">
+                    <div class="space-y-8 text-left">
+                        <h3
+                            class="text-[11px] font-black uppercase tracking-[0.5em] text-white/40 border-b border-white/10 pb-4">
+                            Executive Summary</h3>
+                        <p class="text-2xl text-slate-300 leading-relaxed font-semibold tracking-tight">
+                            Engineering high-availability distributed systems with a rigorous focus on architecture,
+                            data lifecycle management, and sustainable technical debt optimization.
+                        </p>
+                        <p class="text-lg text-slate-500 leading-relaxed font-medium">
+                            I orchestrate complex infrastructure that bridges the gap between raw compute and strategic
+                            intelligence. My approach prioritizes modular service design, efficient data ingestion
+                            pipelines, and deterministic system performance over transient trends.
+                        </p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-8">
+                        <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-l-teal-500/50">
+                            <div class="text-4xl font-black text-white mb-2 tracking-tighter">4.0+ Yrs</div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Engineering
+                                Context</div>
+                        </div>
+                        <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-l-blue-500/50">
+                            <div class="text-4xl font-black text-white mb-2 tracking-tighter">500+ Hrs</div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Algorithmic
+                                Execution</div>
+                        </div>
+                        <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-l-purple-500/50">
+                            <div class="text-4xl font-black text-white mb-2 tracking-tighter">15+</div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Technical
+                                Credentials</div>
+                        </div>
+                        <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-l-emerald-500/50">
+                            <div class="text-4xl font-black text-white mb-2 tracking-tighter">AWS/AI</div>
+                            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Core
+                                Specialization</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8 text-left bg-white/5 p-12 rounded-[3rem] border border-white/10">
+                        <h3 class="text-[11px] font-black uppercase tracking-[0.5em] text-teal-400">Engineering
+                            Philosophy</h3>
+                        <p class="text-slate-400 leading-relaxed font-medium italic">
+                            "System design should be invisible. I strive for clean abstractions where every service
+                            serves a single, verifiable purpose. By focusing on performance engineering at the data
+                            layer, I ensure that growth never compromises system integrity."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 space-y-20">
+                    <div class="space-y-8">
+                        <h3
+                            class="text-[11px] font-black uppercase tracking-[0.5em] text-white/40 border-b border-white/10 pb-4 text-left">
+                            Technical Competency Matrix</h3>
+                        <div class="grid gap-4" id="skills-grid"></div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <h3
+                            class="text-[11px] font-black uppercase tracking-[0.5em] text-white/40 border-b border-white/10 pb-4 text-left">
+                            Academic Foundation</h3>
+                        <div id="education-cards" class="space-y-4"></div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="glass-card p-10 rounded-[3rem] space-y-6 text-left">
+                            <h4 class="text-[10px] font-black text-teal-400 uppercase tracking-widest">Active Growth
+                            </h4>
+                            <ul class="space-y-3 text-xs font-bold text-slate-400 uppercase tracking-tighter">
+                                <li class="flex items-center gap-3"><i data-lucide="zap" class="w-3 h-3"></i>
+                                    Distributed Systems</li>
+                                <li class="flex items-center gap-3"><i data-lucide="zap" class="w-3 h-3"></i> Scalable
+                                    ML Pipelines</li>
+                                <li class="flex items-center gap-3"><i data-lucide="zap" class="w-3 h-3"></i>
+                                    Performance Eng.</li>
+                            </ul>
+                        </div>
+                        <div class="glass-card p-10 rounded-[3rem] space-y-6 text-left">
+                            <h4 class="text-[10px] font-black text-blue-400 uppercase tracking-widest">Strategic Vision
+                            </h4>
+                            <p class="text-[11px] leading-relaxed text-slate-500 font-bold italic">
+                                Advancing toward Large-scale Data Infrastructure and autonomous cloud governance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications-section" class="max-w-7xl mx-auto px-6 py-20">
+            <div class="mb-20 text-left">
+                <span class="text-teal-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Verified
+                    Credentials</span>
+                <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">Certificates.</h2>
+                <p class="text-slate-500 mt-6 max-w-xl font-medium tracking-wide border-l border-teal-500/40 pl-6">
+                    Professional industry recognitions from AWS, Google, IBM, and top technical institutes.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="certs-grid"></div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects-section" class="max-w-7xl mx-auto px-6 py-20">
+            <div class="mb-20 text-left">
+                <span
+                    class="text-teal-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Engineering</span>
+                <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">Portfolio.</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8" id="projects-grid"></div>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research-section" class="max-w-4xl mx-auto px-6 py-20">
+            <div class="mb-20 text-left">
+                <span class="text-teal-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Inquiry</span>
+                <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">Research.</h2>
+            </div>
+            <div id="research-container" class="space-y-8"></div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section" class="max-w-7xl mx-auto px-6 py-20">
+            <div class="glass-card rounded-[5rem] overflow-hidden grid lg:grid-cols-2 shadow-2xl">
+                <div class="p-12 lg:p-20 bg-gradient-to-br from-teal-500/5 to-transparent space-y-12 text-left">
+                    <div class="space-y-4">
+                        <span class="text-teal-500 font-black text-[10px] uppercase tracking-[0.5em]">Interaction</span>
+                        <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter leading-none">Connect.
+                        </h2>
+                        <p class="text-slate-400 mt-6 text-lg font-medium max-w-md">Let's build the future of
+                            data-driven systems together. Whether you have a specific inquiry or just want to discuss
+                            high-level system architecture, I'm always open to professional collaborations.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-6 group cursor-pointer" onclick="copyEmail()">
+                            <div id="email-icon-box"
+                                class="w-16 h-16 bg-white/5 rounded-3xl flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-[#02040a] transition-all">
+                                <i data-lucide="mail" class="w-7 h-7" id="email-icon"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Email
+                                </p>
+                                <p class="text-xl font-bold text-white transition-colors group-hover:text-teal-400">
+                                    lokesh.boddu006@gmail.com</p>
+                            </div>
+                        </div>
+                        <a href="tel:7331192922" class="flex items-center gap-6 group">
+                            <div
+                                class="w-16 h-16 bg-white/5 rounded-3xl flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-[#02040a] transition-all">
+                                <i data-lucide="phone" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Direct
+                                    Dial</p>
+                                <p class="text-xl font-bold text-white group-hover:text-teal-400 transition-colors">+91
+                                    7331192922</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/lokeshboddu006" target="_blank"
+                            class="flex items-center gap-6 group">
+                            <div
+                                class="w-16 h-16 bg-white/5 rounded-3xl flex items-center justify-center text-teal-400 group-hover:bg-teal-500 group-hover:text-[#02040a] transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-7 h-7">
+                                    <path
+                                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                    <rect width="4" height="12" x="2" y="9" />
+                                    <circle cx="4" cy="4" r="2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">LinkedIn
+                                </p>
+                                <p class="text-xl font-bold text-white group-hover:text-teal-400 transition-colors">
+                                    lokeshboddu006</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-12 lg:p-20 bg-[#070a18]/50 text-left">
+                    <form action="https://formspree.io/f/mdalprzn" method="POST" id="contact-form" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                <label
+                                    class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Name</label>
+                                <input required type="text" name="name" placeholder="Lokesh Boddu"
+                                    class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:ring-2 focus:ring-teal-500 text-white placeholder:text-slate-700">
+                            </div>
+                            <div class="space-y-3">
+                                <label
+                                    class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Email</label>
+                                <input required type="email" name="email" placeholder="lokesh.boddu006@gmail.com"
+                                    class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:ring-2 focus:ring-teal-500 text-white placeholder:text-slate-700">
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <label
+                                class="text-[10px] font-black uppercase text-slate-500 tracking-widest">Inquiry</label>
+                            <textarea required name="message" rows="5" placeholder="I'd love to chat about..."
+                                class="w-full bg-white/5 border border-white/10 rounded-2xl p-5 outline-none focus:ring-2 focus:ring-teal-500 text-white resize-none placeholder:text-slate-700"></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn"
+                            class="w-full bg-teal-500 text-[#02040a] py-6 rounded-3xl font-black uppercase tracking-[0.2em] text-[11px] hover:bg-teal-400 transition-all shadow-xl shadow-teal-500/10 active:scale-95">Send
+                            Message</button>
+                    </form>
+                    <div id="form-success"
+                        class="hidden mt-6 p-5 bg-emerald-500/10 text-emerald-400 rounded-3xl text-center text-sm font-black border border-emerald-500/20 uppercase tracking-widest">
+                        Transmitted Successfully!</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume-section" class="max-w-5xl mx-auto px-6 py-20">
+            <div
+                class="bg-white text-[#02040a] p-12 lg:p-24 rounded-[4rem] shadow-2xl relative overflow-hidden resume-card text-left">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start gap-12 border-b border-slate-100 pb-16">
+                    <div>
+                        <h2 class="text-7xl font-black tracking-tighter mb-2 leading-none">LOKESH BODDU</h2>
+                        <p class="text-teal-600 font-black tracking-[0.4em] uppercase text-xs">Software Engineer Intern
+                            • AWS Data Engineer</p>
+                        <div
+                            class="mt-8 flex flex-wrap gap-6 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            <span class="flex items-center gap-2"><i data-lucide="map-pin"
+                                    class="w-4 h-4 text-teal-500"></i> AP, INDIA</span>
+                            <span class="flex items-center gap-2"><i data-lucide="mail"
+                                    class="w-4 h-4 text-teal-500"></i> lokesh.boddu006@gmail.com</span>
+                            <span class="flex items-center gap-2"><i data-lucide="phone"
+                                    class="w-4 h-4 text-teal-500"></i> +91 7331192922</span>
+                        </div>
+                    </div>
+                    <!-- Visible & Functional Print Button -->
+                    <button onclick="window.print()"
+                        class="print-hidden p-6 bg-slate-900 text-white rounded-3xl hover:bg-teal-500 transition-all flex items-center gap-3 group shadow-xl">
+                        <i data-lucide="download-cloud" class="group-hover:translate-y-1 transition-transform"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest">Save as PDF</span>
+                    </button>
+                </div>
+                <div class="grid md:grid-cols-3 gap-16 py-16">
+                    <div class="md:col-span-2 space-y-16" id="resume-main"></div>
+                    <div class="space-y-16" id="resume-side"></div>
+                </div>
+                <div
+                    class="pt-10 border-t border-slate-50 flex justify-center text-[10px] font-black text-slate-200 tracking-[0.3em] uppercase italic">
+                    Formal Engineering Portfolio • Certified Professional Document
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 border-t border-white/5 bg-[#010206] print-hidden">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-12 text-center">
+            <div class="flex gap-10">
+                <a href="https://github.com/lokeshboddu006" target="_blank"
+                    class="text-slate-600 hover:text-white transition-all scale-125"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                    </svg></a>
+                <a href="https://www.linkedin.com/in/lokeshboddu006" target="_blank"
+                    class="text-slate-600 hover:text-white transition-all scale-125"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect width="4" height="12" x="2" y="9" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg></a>
+                <a href="mailto:lokesh.boddu006@gmail.com"
+                    class="text-slate-600 hover:text-white transition-all scale-125"><i data-lucide="mail"></i></a>
+            </div>
+            <div class="space-y-3">
+                <p class="text-slate-200 text-xs font-black tracking-[0.4em] uppercase">© 2026 LOKESH BODDU • SYSTEM
+                    ARCHITECT</p>
+                <p class="text-slate-600 text-[10px] font-bold tracking-[0.6em] uppercase italic">CODE WITH PURPOSE •
+                    ENGINEER WITH VISION</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        const APP_DATA = {
+            education: [
+                { school: "P.V.P.S.I.T", degree: "B.Tech - CS (Data Science)", year: "2024 - 2028", location: "Vijayawada, AP", details: "Maintaining academic excellence with focus on DSA and Cloud Computing.", icon: "graduation-cap" },
+                { school: "Inspire Institute", degree: "Junior College", year: "2022 - 2024", location: "Maharashtra, India", details: "Specialized in scientific fundamentals with core focus on Mathematics and Physics.", icon: "book-open" },
+                { school: "Indira Gandhi Garden School", degree: "Schooling (1st – 10th)", year: "2010 - 2022", location: "Chandrapur, India", details: "Completed primary and secondary education with a strong academic foundation and active participation in school activities.", icon: "book-open" }
+            ],
+            experience: [
+                { role: "AWS Data Engineering Intern", company: "EduSkills (AICTE Supported)", duration: "Jan 2026 - March 2026", desc: "Expertise in Amazon S3, Athena, Glue ETL, and Redshift warehousing logic." }
+            ],
+            certifications: [
+                {
+                    title: "Quantum Fundamentals",
+                    issuer: "Qubitech",
+                    icon: "zap",
+                    url: "https://lms-cdn.qubitech.io/media/certificates/1/78a2f7aa/9d180c57_b3078ee9.jpg",
+                    image: "https://lh3.googleusercontent.com/d/1n1h8NRrNZh1-VUhLc5pmVpEy-8iszAK-"
+                },
+                {
+                    title: "AWS Academy Data Engineering",
+                    issuer: "AWS Academy",
+                    icon: "cloud",
+                    url: "https://www.credly.com/badges/956f1cf7-8c40-437c-ab9b-a03770be62c0/public_url",
+                    image: "https://lh3.googleusercontent.com/d/122LVbCY6VylevbQybzw8ShPZsuJlFSFv"
+                },
+                {
+                    title: "AWS Academy Cloud Foundations",
+                    issuer: "AWS Academy",
+                    icon: "cloud-lightning",
+                    url: "https://www.credly.com/badges/13be7df1-e0e9-48d6-836e-f2688692b1f0/public_url",
+                    image: "https://lh3.googleusercontent.com/d/1-TkwnQ1LtXFoAaFudQm0NE8Lc12zBXgo"
+                },
+                {
+                    title: "Cloud Computing (Elite)",
+                    issuer: "NPTEL",
+                    icon: "award",
+                    url: "https://drive.google.com/file/d/16yD_urbN3FNgO9rBFs_iZzqSv7ddaId2/view?usp=sharing",
+                    image: "https://lh3.googleusercontent.com/d/16yD_urbN3FNgO9rBFs_iZzqSv7ddaId2"
+                },
+                {
+                    title: "Gemini Certified Student",
+                    issuer: "Google",
+                    icon: "sparkles",
+                    url: "https://edu.google.accredible.com/05218031-eae3-412b-857a-9fe88fdecbef#acc.2jzBoFgt",
+                    image: "https://lh3.googleusercontent.com/d/1pikS6FXlCzQiDCYQnqG0B3lpDImV3uLF"
+                },
+                {
+                    title: "IBM Data Fundamentals",
+                    issuer: "IBM",
+                    icon: "database",
+                    url: "https://www.credly.com/badges/acd63d3d-b4e3-4794-b97d-4693c52358f9/public_url",
+                    image: "https://lh3.googleusercontent.com/d/1m4okJ_md6OKgxLHrY9CSFc5BCZP7H_go"
+                },
+                {
+                    title: "English Proficiency (STEP)",
+                    issuer: "The Hindu",
+                    icon: "languages",
+                    url: "https://storage.googleapis.com/assets.thehindustep.in/certificates/STEP-7838655237314512569-20250429183324.pdf",
+                    image: "https://lh3.googleusercontent.com/d/1_aQJmarW9Y5Yj6F2vJbJIBaBlz9qNN01"
+                },
+                {
+                    title: "Python Essentials - 1",
+                    issuer: "Cisco",
+                    icon: "code",
+                    url: "https://www.credly.com/badges/c73e07c9-da2f-4ec5-b1d4-d101aeb9ffff/public_url",
+                    image: "https://lh3.googleusercontent.com/d/1bBP2Ps9oezz7ufCwyBjJzn33Tb3-WSoT"
+                },
+                { title: "Programming in C", issuer: "BYTS", icon: "code", url: "#", image: "https://via.placeholder.com/800x600/0b101d/2dd4bf?text=C+Programming" },
+                {
+                    title: "Data Analytics Job Simulation",
+                    issuer: "Deloitte",
+                    icon: "pie-chart",
+                    url: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_696dbc7798c76d180ddd9c94_1768799596184_completion_certificate.pdf",
+                    image: "https://lh3.googleusercontent.com/d/1Gho7jBgV12YuUnGs77xP2FLDnowdQ7xa"
+                }
+            ],
+            skills: [
+                { title: "Engineering Foundations", items: ["DSA", "OOP", "DBMS", "Discrete Math", "Software Eng."], icon: "layers" },
+                { title: "Systems & Architecture", items: ["System Design", "Distributed Computing", "API Contract Design", "Scalability"], icon: "layout" },
+                { title: "Data & Intelligence", items: ["TensorFlow", "OpenCV", "CNN", "Minimax", "EDA"], icon: "activity" },
+                { title: "Cloud & Infrastructure", items: ["AWS Ecosystem", "Glue ETL", "Athena", "Redshift", "PostgreSQL"], icon: "cloud" },
+                { title: "Programming Languages", items: ["Java", "Python", "C#", "C", "SQL"], icon: "code-2" }
+            ],
+            projects: [
+                {
+                    title: "AI MoodMate",
+                    status: "Completed",
+                    cat: "Emotion-Aware Music AI",
+                    desc: "Full-stack AI app detecting user emotions via webcam to recommend mood-matching Spotify tracks.",
+                    icon: "music",
+                    tools: ["TensorFlow", "OpenCV", "Flask", "Spotify API"],
+                    role: "Lead ML & Full-Stack Developer",
+                    live: "https://invalid-52.github.io/emotion-ai/",
+                    repo: "https://github.com/invalid-52/emotion-ai",
+                    insights: [
+                        "Engineered end-to-end ML pipelines for real-time facial emotion prediction.",
+                        "Trained a high-accuracy CNN model on the FER2013 dataset.",
+                        "Mapped emotions to music moods using Spotify audio features.",
+                        "Integrated a mini-game arcade section for user engagement."
+                    ]
+                },
+                {
+                    title: "EventEase",
+                    status: "Completed",
+                    cat: "Management App",
+                    desc: "Blazor web application for seamless event registration and real-time attendance tracking.",
+                    icon: "tv",
+                    tools: ["Blazor", "C#", "ASP.NET Core", "SQL Server"],
+                    role: "Full Stack Developer",
+                    repo: "https://github.com/lokeshboddu006/event-ease",
+                    insights: [
+                        "Architected a real-time tracking system using SignalR for instant updates.",
+                        "Designed a responsive UI with Blazor components for seamless cross-device compatibility.",
+                        "Implemented robust JWT-based authentication for secure event management.",
+                        "Integrated automated email registration confirmations."
+                    ]
+                },
+                {
+                    title: "Strategic Tic-Tac-Toe",
+                    status: "Completed",
+                    cat: "Game Theory AI",
+                    desc: "Logic-driven engine using minimax principles for optimal game-play move selection.",
+                    icon: "cpu",
+                    tools: ["Java", "Algorithm Design", "Data Structures"],
+                    role: "AI Logic Developer",
+                    repo: "https://github.com/lokeshboddu006/TIC-TAC-TOE-TRAINER",
+                    insights: [
+                        "Developed an unbeatable AI engine based on the Minimax recursive algorithm.",
+                        "Optimized state-space search using Alpha-Beta pruning for faster decision making.",
+                        "Engineered a clean CLI/GUI interface to visualize recursive logic trees.",
+                        "Maintained game state persistence using efficient memory structures."
+                    ]
+                },
+                {
+                    title: "Data Capstone",
+                    status: "Completed",
+                    cat: "Web Scraping & EDA",
+                    desc: "End-to-end analysis pipeline automating data extraction and visualization of corporate datasets.",
+                    icon: "bar-chart-3",
+                    tools: ["Python", "BeautifulSoup", "Seaborn", "Pandas"],
+                    role: "Data Scientist & Analyst",
+                    repo: "https://github.com/lokeshboddu006",
+                    insights: [
+                        "Automated extraction of 10,000+ data points from complex portals using BeautifulSoup.",
+                        "Performed multi-dimensional EDA to identify market inefficiencies.",
+                        "Designed a visual dashboard using Seaborn for actionable strategic insights."
+                    ]
+                },
+                {
+                    title: "NAVISENSE 360",
+                    status: "In Progress",
+                    cat: "Road Intelligence",
+                    desc: "GPS-resilient navigation system for road health scoring and multi-vehicle validation.",
+                    icon: "map",
+                    tools: ["Python", "GPS-Logic", "Data Modeling"],
+                    role: "Lead Architect",
+                    insights: ["Architected offline synchronization logic.", "Introduced sensor-based road condition scoring."]
+                },
+                {
+                    title: "Cloud Intelligence Platform",
+                    status: "Completed",
+                    cat: "Cloud Monitoring & Analytics",
+                    desc: "A DevOps-focused observability system to monitor infrastructure performance, visualize metrics, and provide operational insights.",
+                    icon: "cloud",
+                    tools: ["Node.js", "Prometheus", "Grafana", "Docker", "HTML/JS", "Chart.js"],
+                    role: "DevOps & Full-Stack Developer",
+                    live: "https://lokeshboddu006.github.io/cloud-intelligence-platform/",
+                    repo: "https://github.com/lokeshboddu006/cloud-intelligence-platform",
+                    insights: [
+                        "Engineered a real-time infrastructure monitoring dashboard with DevOps-style command center UI.",
+                        "Implemented telemetry collection using Prometheus and Node Exporter.",
+                        "Integrated and embedded Grafana dashboards for system metric visualization.",
+                        "Developed a REST API Node.js backend to simulate and aggregate infrastructure metrics.",
+                        "Simulated cost optimization and FinOps insights for cloud observability architecture."
+                    ]
+                }
+            ],
+            research: [{ title: "Road Condition Patterns via Crowdsourced Data", status: "Under Research", abstract: "Multi-sensor smartphone fusion for infrastructure anomaly detection.", tags: ["Smart Infrastructure", "Big Data"] }],
+            achievements: ["1st Place - National Quiz Championship", "2nd Place - AI Game Hackathon", "Runner-up - Inter-College Debate"]
+        };
+
+        // Preloader Logic Integration
+        const startPreloader = () => {
+            let progress = 0;
+            const bar = document.getElementById('progress-bar');
+            const perc = document.getElementById('percentage');
+
+            const interval = setInterval(() => {
+                let jump = Math.floor(Math.random() * 3) + 1;
+                if (progress > 85) jump = 1;
+                progress += jump;
+
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(finishLoading, 800);
+                }
+
+                bar.style.width = progress + '%';
+                perc.innerText = progress;
+            }, 60);
+        };
+
+        const finishLoading = () => {
+            const loader = document.getElementById('preloader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.visibility = 'hidden';
+            }, 1000);
+        };
+
+        window.renderApp = () => {
+            const setSafe = (id, html) => {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = html;
+            };
+
+            setSafe('education-cards', APP_DATA.education.map(edu => `
+                <div class="p-8 glass-card rounded-[2rem] space-y-4 text-left group hover:border-teal-500/40 transition-all">
+                    <div class="flex justify-between items-start">
+                        <i data-lucide="${edu.icon}" class="w-8 h-8 text-teal-500 group-hover:rotate-12 transition-transform"></i>
+                        <span class="text-[9px] font-black text-slate-600 uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full">${edu.year}</span>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-black text-white uppercase tracking-tight">${edu.school}</h4>
+                        <p class="text-teal-400 font-bold uppercase tracking-widest text-[8px] mb-2">${edu.degree}</p>
+                        <p class="text-slate-500 text-[11px] leading-relaxed font-medium">${edu.details}</p>
+                    </div>
+                </div>
+            `).join(''));
+
+            setSafe('skills-grid', APP_DATA.skills.map(s => `
+                <div class="p-8 glass-card rounded-[2rem] text-left group">
+                    <h4 class="text-[10px] font-black text-teal-500 mb-5 uppercase tracking-[0.3em] flex items-center gap-3">
+                        <i data-lucide="${s.icon}" class="w-4 h-4"></i> ${s.title}
+                    </h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${s.items.map(i => `<span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-[9px] font-black text-slate-400 hover:border-teal-500/30 hover:text-white transition-all cursor-default uppercase tracking-tighter">${i}</span>`).join('')}
+                    </div>
+                </div>
+            `).join(''));
+
+            setSafe('certs-grid', APP_DATA.certifications.map((c, idx) => `
+                <div onclick="openCertModal(${idx})" class="p-6 glass-card rounded-[2.5rem] flex items-center gap-6 text-left cursor-pointer group hover:border-teal-500/30">
+                    <div class="w-14 h-14 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-400 group-hover:scale-110 transition-transform"><i data-lucide="${c.icon}" class="w-6 h-6"></i></div>
+                    <div class="flex-grow">
+                        <h4 class="text-sm font-black text-white tracking-tight uppercase">${c.title}</h4>
+                        <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1 italic">${c.issuer}</p>
+                    </div>
+                    <i data-lucide="maximize-2" class="w-4 h-4 text-slate-600 group-hover:text-teal-400 opacity-0 group-hover:opacity-100 transition-all"></i>
+                </div>
+            `).join(''));
+
+            setSafe('projects-grid', APP_DATA.projects.map((p, idx) => `
+                <div onclick="openProjectModal(${idx})" class="glass-card rounded-[3.5rem] p-10 lg:p-14 flex flex-col h-full group cursor-pointer text-left">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-[0.2em] flex items-center gap-2 border ${p.status === 'In Progress' ? 'bg-orange-500/10 text-orange-400 border-orange-500/20' : 'bg-teal-500/10 text-teal-400 border-teal-500/20'}">
+                            <i data-lucide="${p.status === 'In Progress' ? 'clock' : 'check-circle'}" class="w-3 h-3"></i> ${p.status}
+                        </div>
+                        <div class="p-4 bg-white/5 rounded-2xl text-slate-500 group-hover:text-teal-400 transition-colors"><i data-lucide="${p.icon}" class="w-7 h-7"></i></div>
+                    </div>
+                    <div class="flex-grow space-y-4">
+                        <span class="text-[11px] font-black text-teal-500 uppercase tracking-[0.4em]">${p.cat}</span>
+                        <h3 class="text-4xl font-black text-white tracking-tighter uppercase group-hover:text-teal-400 transition-colors">${p.title}</h3>
+                        <p class="text-slate-400 leading-relaxed font-medium line-clamp-3 text-lg">${p.desc}</p>
+                        <div class="pt-4"><p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.1em]">Primary Role: <span class="text-slate-300">${p.role}</span></p></div>
+                    </div>
+                    <div class="mt-10 pt-10 border-t border-white/5 flex items-center justify-between">
+                        <div class="flex gap-3 text-xs font-bold text-slate-600 tracking-tighter">${p.tools.slice(0, 2).map(t => `#${t}`).join(' ')}</div>
+                        <i data-lucide="arrow-right" class="w-6 h-6 text-teal-400 group-hover:translate-x-2 transition-transform"></i>
+                    </div>
+                </div>
+            `).join(''));
+
+            setSafe('research-container', APP_DATA.research.map(r => `
+                <div class="p-12 glass-card rounded-[3rem] relative overflow-hidden group text-left">
+                    <i data-lucide="book-open" class="absolute -top-12 -right-12 w-64 h-64 text-white/[0.03] group-hover:text-teal-500/[0.05]"></i>
+                    <div class="relative z-10 space-y-6">
+                        <span class="px-3 py-1 bg-teal-500/10 text-teal-400 text-[10px] font-black uppercase rounded-full border border-teal-500/20">${r.status}</span>
+                        <h3 class="text-4xl font-black text-white leading-tight uppercase tracking-tighter italic">${r.title}</h3>
+                        <p class="text-slate-400 text-lg leading-relaxed font-medium">${r.abstract}</p>
+                        <div class="flex flex-wrap gap-4 pt-4">${r.tags.map(t => `<span class="text-[10px] font-black text-slate-600 uppercase tracking-widest">#${t}</span>`).join('')}</div>
+                    </div>
+                </div>
+            `).join(''));
+
+            setSafe('resume-main', `
+                <div class="space-y-16">
+                    <h3 class="text-[11px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10 text-left">Internship History</h3>
+                    <div class="space-y-10">
+                        ${APP_DATA.experience.map(exp => `<div class="space-y-2">
+                            <h4 class="text-2xl font-black uppercase tracking-tight text-slate-900">${exp.role}</h4>
+                            <p class="text-teal-600 font-black uppercase text-[11px] tracking-widest">${exp.company} • ${exp.duration}</p>
+                            <p class="text-slate-600 text-md leading-relaxed">${exp.desc}</p>
+                        </div>`).join('')}
+                    </div>
+                    <h3 class="text-[11px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10 text-left">Education</h3>
+                    <div class="space-y-10">
+                        ${APP_DATA.education.map(edu => `<div class="space-y-2">
+                            <div class="flex justify-between items-start">
+                                <div><h4 class="text-2xl font-black uppercase text-slate-900">${edu.school}</h4><p class="text-teal-600 font-bold italic text-[11px] tracking-widest uppercase">${edu.degree}</p></div>
+                                <span class="text-slate-400 font-black text-[12px] uppercase">${edu.year}</span>
+                            </div>
+                            <p class="text-slate-600 text-md">${edu.details}</p>
+                        </div>`).join('')}
+                    </div>
+                    <h3 class="text-[11px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10 text-left">Technical Works</h3>
+                    <div class="space-y-10">
+                        ${APP_DATA.projects.map(p => `<div><h4 class="text-xl font-black uppercase text-slate-900">${p.title}</h4><p class="text-slate-600 text-md leading-relaxed">${p.desc}</p><p class="text-[11px] font-black text-teal-600 uppercase mt-2 italic">Stack: ${p.tools.join(' • ')} • Role: ${p.role}</p></div>`).join('')}
+                    </div>
+                </div>
+            `);
+
+            setSafe('resume-side', `
+                <div class="space-y-16">
+                    <div><h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10">Technology Stack</h5>${APP_DATA.skills.map(s => `<div class="mb-8"><p class="text-[9px] font-black uppercase text-slate-400 tracking-widest mb-1.5">${s.title}</p><p class="text-xs font-bold text-slate-800 leading-relaxed">${s.items.join(' • ')}</p></div>`).join('')}</div>
+                    <div><h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10">Certifications</h5>${APP_DATA.certifications.map(c => `<div class="mb-5"><p class="text-[11px] font-black uppercase text-slate-900 leading-tight">${c.title}</p><p class="text-[9px] font-black text-teal-600 uppercase tracking-widest italic">${c.issuer}</p></div>`).join('')}</div>
+                    <div><h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10">Honors</h5>${APP_DATA.achievements.map(a => `<div class="flex gap-3 mb-4"><i data-lucide="award" class="w-4 h-4 text-teal-500 flex-shrink-0"></i><p class="text-xs font-black text-slate-700 leading-tight uppercase">${a}</p></div>`).join('')}</div>
+                </div>
+            `);
+
+            lucide.createIcons();
+        };
+
+        window.openProjectModal = (idx) => {
+            const p = APP_DATA.projects[idx];
+            const body = document.getElementById('generic-modal-body');
+            body.innerHTML = `
+                <div class="space-y-12">
+                    <div class="space-y-6">
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <span class="text-teal-400 font-black text-[11px] uppercase tracking-[0.6em]">${p.cat}</span>
+                            <span class="px-4 py-2 glass-card rounded-xl text-[9px] font-black text-slate-500 uppercase tracking-widest">Status: ${p.status}</span>
+                        </div>
+                        <h2 class="text-6xl md:text-[6rem] font-black text-white tracking-tighter leading-none italic uppercase">${p.title}</h2>
+                        <div class="bg-teal-500/10 border border-teal-500/20 px-8 py-5 rounded-3xl inline-block mt-8"><span class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mr-6">Engineering Role</span><span class="text-sm font-black text-teal-400 uppercase tracking-widest">${p.role}</span></div>
+                    </div>
+                    <div class="grid lg:grid-cols-3 gap-20">
+                        <div class="lg:col-span-2 space-y-10">
+                            <div class="space-y-4"><h4 class="text-xl font-black text-white uppercase tracking-tighter italic underline decoration-teal-500 decoration-2 underline-offset-8">Strategic Overview</h4><p class="text-slate-400 leading-relaxed text-2xl font-medium">${p.desc}</p></div>
+                            <div class="space-y-6"><h4 class="text-xl font-black text-white uppercase tracking-tighter italic underline decoration-teal-500 decoration-2 underline-offset-8">Project Deliverables</h4><div class="space-y-6">
+                                ${p.insights.map(insight => `<div class="flex items-start gap-6 group"><div class="w-3 h-3 rounded-full bg-teal-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform shadow-[0_0_10px_teal]"></div><p class="text-slate-300 leading-relaxed font-bold text-2xl tracking-tighter">${insight}</p></div>`).join('')}
+                            </div></div>
+                        </div>
+                        <div class="space-y-12">
+                            <div class="space-y-4"><h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.5em]">Execution Stack</h4><div class="flex flex-wrap gap-2">${p.tools.map(t => `<span class="px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-white text-[10px] font-black uppercase tracking-widest">${t}</span>`).join('')}</div></div>
+                            <div class="space-y-6"><h4 class="text-xs font-black text-slate-500 uppercase tracking-[0.5em]">Actions</h4><div class="grid gap-3">
+                                ${p.live ? `<a href="${p.live}" target="_blank" class="flex items-center justify-between p-6 bg-teal-500 text-[#02040a] rounded-3xl font-black uppercase text-[11px] tracking-widest hover:bg-white transition-all shadow-xl shadow-teal-500/20">Launch Instance <i data-lucide="external-link" class="w-5 h-5"></i></a>` : ''}
+                                <a href="${p.repo || 'https://github.com/lokeshboddu006'}" target="_blank" class="flex items-center justify-between p-6 glass-card text-white rounded-3xl font-black uppercase text-[11px] tracking-widest hover:bg-white hover:text-[#02040a] transition-all shadow-xl">Source Code <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            openGenericModal();
+        };
+
+        window.openCertModal = (idx) => {
+            const c = APP_DATA.certifications[idx];
+            const body = document.getElementById('generic-modal-body');
+            body.innerHTML = `
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative group flex items-center justify-center bg-black/40 rounded-[2rem] border border-white/5 p-4 min-h-[400px]">
+                        <div class="cert-glow"></div>
+                        
+                        <div id="cert-loading" class="absolute inset-0 flex flex-col items-center justify-center text-slate-500 space-y-4">
+                            <i data-lucide="loader-2" class="w-10 h-10 animate-spin text-teal-500"></i>
+                            <p class="text-[10px] font-black uppercase tracking-[0.2em]">Authenticating Media...</p>
+                        </div>
+
+                        <img src="${c.image}" 
+                             alt="${c.title}" 
+                             onload="document.getElementById('cert-loading').style.display='none'"
+                             onerror="this.style.display='none'; document.getElementById('cert-loading').innerHTML='<i data-lucide=\\'alert-circle\\' class=\\'w-10 h-10 text-red-400\\'></i><p class=\\'text-[10px] font-black uppercase text-red-400 mt-2\\'>Connection Blocked</p><p class=\\'text-[8px] text-slate-600 px-8 text-center mt-2 uppercase tracking-widest\\'>Google Drive is preventing direct preview. Use the Original Link button below.</p>'; lucide.createIcons()"
+                             class="max-w-full max-h-[500px] rounded-xl border border-white/10 shadow-2xl object-contain transition-transform group-hover:scale-[1.02] relative z-10">
+                        
+                        <div class="absolute inset-0 bg-teal-500/5 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                             <i data-lucide="zoom-in" class="w-12 h-12 text-teal-400"></i>
+                        </div>
+                    </div>
+                    <div class="space-y-10">
+                        <div class="space-y-4">
+                            <span class="text-teal-500 font-black text-[11px] uppercase tracking-[0.6em] block">Verified Credential</span>
+                            <h2 class="text-5xl md:text-6xl font-black text-white tracking-tighter leading-none uppercase">${c.title}</h2>
+                            <p class="text-xl font-bold text-slate-500 italic uppercase tracking-widest">Issuer: ${c.issuer}</p>
+                        </div>
+                        <p class="text-slate-400 text-lg leading-relaxed font-medium">
+                            This certification validates professional competency in advanced engineering domains. Verified credentials ensure the authenticity of the skill set and industry compliance.
+                        </p>
+                        <div class="pt-6">
+                            <a href="${c.url}" target="_blank" class="inline-flex items-center gap-4 px-10 py-5 bg-teal-500 text-[#02040a] rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-white transition-all shadow-xl shadow-teal-500/20 group">
+                                View Original Link <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            openGenericModal();
+        };
+
+        function openGenericModal() {
+            const modal = document.getElementById('generic-modal');
+            const container = document.getElementById('generic-modal-container');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                container.style.transform = 'scale(1)';
+            }, 50);
+            lucide.createIcons();
+        }
+
+        window.closeGenericModal = (e) => {
+            if (e && e.target !== document.getElementById('generic-modal')) return;
+            const modal = document.getElementById('generic-modal');
+            const container = document.getElementById('generic-modal-container');
+            modal.style.opacity = '0';
+            container.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
+        };
+
+        /* --- UPDATED NAVIGATE TO WITH DIRECTIONAL SLIDING ANIMATIONS --- */
+        const SECTION_ORDER = ['home', 'about', 'certifications', 'projects', 'research', 'contact', 'resume'];
+        let activeSectionId = 'home';
+
+        window.navigateTo = (sectionId) => {
+            if (sectionId === activeSectionId) return;
+
+            const sections = document.querySelectorAll('section');
+            const activeNavBtns = document.querySelectorAll('.nav-btn');
+
+            // Determine animation direction based on order index
+            const currentIndex = SECTION_ORDER.indexOf(activeSectionId);
+            const targetIndex = SECTION_ORDER.indexOf(sectionId);
+            const directionClass = targetIndex > currentIndex ? 'from-right' : 'from-left';
+
+            // Update global active ID
+            activeSectionId = sectionId;
+
+            // Clean up navigation visual state
+            activeNavBtns.forEach(btn => {
+                btn.classList.remove('active-nav');
+                const p = btn.querySelector('.nav-pill'); if (p) p.remove();
+            });
+
+            const activeBtn = document.querySelector(`[data-nav="${sectionId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active-nav');
+                const pill = document.createElement('div');
+                pill.className = 'nav-pill';
+                activeBtn.appendChild(pill);
+            }
+
+            // Execute Directional Sliding Logic
+            sections.forEach(s => {
+                s.classList.remove('active', 'from-right', 'from-left');
+                s.style.display = 'none';
+            });
+
+            const target = document.getElementById(sectionId + '-section');
+            if (target) {
+                target.style.display = 'block';
+                target.classList.add(directionClass); // Set starting position
+
+                // Trigger reflow to ensure the transition plays from the starting class to translateX(0)
+                void target.offsetHeight;
+                target.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            toggleMenu(false);
+            lucide.createIcons();
+            window.dispatchEvent(new CustomEvent('sectionChange', { detail: sectionId }));
+        };
+
+        window.toggleMenu = (isOpen) => {
+            const menu = document.getElementById('mobile-menu');
+            if (!menu) return;
+            if (isOpen) { menu.classList.remove('hidden'); menu.classList.add('flex'); document.body.style.overflow = 'hidden'; }
+            else { menu.classList.add('hidden'); menu.classList.remove('flex'); document.body.style.overflow = 'auto'; }
+        };
+
+        window.copyEmail = () => {
+            navigator.clipboard.writeText('lokesh.boddu006@gmail.com').then(() => {
+                const box = document.getElementById('email-icon-box'); const icon = document.getElementById('email-icon');
+                if (box && icon) {
+                    box.classList.replace('text-teal-400', 'text-white'); box.classList.add('bg-emerald-500'); icon.setAttribute('data-lucide', 'check'); lucide.createIcons();
+                    setTimeout(() => { box.classList.replace('text-white', 'text-teal-400'); box.classList.remove('bg-emerald-500'); icon.setAttribute('data-lucide', 'mail'); lucide.createIcons(); }, 2000);
+                }
+            });
+        };
+
+        // ================================================================
+        //  PREMIUM ENHANCEMENT MODULES
+        // ================================================================
+
+        /* ---- CUSTOM CURSOR (mix-blend-mode: difference) ---- */
+        window.initCursor = () => {
+            if (window.matchMedia('(hover: none)').matches) return;
+            const cursor = document.getElementById('cursor');
+            if (!cursor) return;
+            document.addEventListener('mousemove', e => {
+                gsap.to(cursor, { x: e.clientX - 10, y: e.clientY - 10, duration: 0.1 });
+                const sp = document.getElementById('bg-spotlight');
+                if (sp) { sp.style.setProperty('--mx', e.clientX + 'px'); sp.style.setProperty('--my', e.clientY + 'px'); }
+            }, { passive: true });
+            // Grow cursor on interactive hover
+            document.querySelectorAll('a, button, [onclick]').forEach(el => {
+                el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 3, duration: 0.3 }));
+                el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, duration: 0.3 }));
+            });
+        };
+
+        /* ---- LENIS SMOOTH SCROLL ---- */
+        window.initLenis = () => {
+            if (!window.Lenis || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+            const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+            requestAnimationFrame(raf);
+        };
+
+        /* ---- SCROLL PROGRESS BAR ---- */
+        window.initScrollProgress = () => {
+            const bar = document.getElementById('scroll-progress');
+            if (!bar) return;
+            window.addEventListener('scroll', () => {
+                const h = document.documentElement.scrollHeight - innerHeight;
+                bar.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+            }, { passive: true });
+        };
+
+        /* ---- PARALLAX ORBS ---- */
+        window.initParallax = () => {
+            if (window.matchMedia('(hover: none)').matches) return;
+            const orbs = document.querySelectorAll('.orb');
+            document.addEventListener('mousemove', e => {
+                const mx = e.clientX / innerWidth - 0.5;
+                const my = e.clientY / innerHeight - 0.5;
+                orbs.forEach((o, i) => {
+                    const d = (i + 1) * 9;
+                    o.style.transform = `translate(${mx * d}px, ${my * d}px)`;
+                });
+            }, { passive: true });
+        };
+
+        /* ---- THREE.JS BACKGROUND (Icosahedron + Particles) ---- */
+        window.initThreeBackground = () => {
+            if (window.matchMedia('(hover: none)').matches) return;
+            const container = document.getElementById('canvas-container');
+            if (!container || !window.THREE) return;
+            const R = window.THREE;
+
+            const scene = new R.Scene();
+            const camera = new R.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000);
+            const renderer = new R.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(innerWidth, innerHeight);
+            renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Wireframe icosahedron
+            const geometry = new R.IcosahedronGeometry(2, 20);
+            const material = new R.MeshNormalMaterial({ wireframe: true, opacity: 0.08, transparent: true });
+            const sphere = new R.Mesh(geometry, material);
+            scene.add(sphere);
+
+            // Particle cloud
+            const count = 1200;
+            const posArr = new Float32Array(count * 3);
+            for (let i = 0; i < count * 3; i++) posArr[i] = (Math.random() - 0.5) * 12;
+            const pGeom = new R.BufferGeometry();
+            pGeom.setAttribute('position', new R.BufferAttribute(posArr, 3));
+            const pMat = new R.PointsMaterial({ size: 0.004, color: 0xffffff, transparent: true, opacity: 0.6 });
+            const points = new R.Points(pGeom, pMat);
+            scene.add(points);
+
+            camera.position.z = 5;
+
+            let mX = 0, mY = 0, tX = 0, tY = 0;
+            document.addEventListener('mousemove', e => {
+                tX = (e.clientX / innerWidth - 0.5) * 2;
+                tY = (e.clientY / innerHeight - 0.5) * 2;
+            }, { passive: true });
+
+            (function loop() {
+                requestAnimationFrame(loop);
+                mX += (tX - mX) * 0.05;
+                mY += (tY - mY) * 0.05;
+                sphere.rotation.y += 0.004;
+                sphere.rotation.x += 0.002;
+                sphere.position.x = mX * 0.5;
+                sphere.position.y = -mY * 0.5;
+                points.rotation.y = -mX * 0.08;
+                points.rotation.x = mY * 0.08;
+                renderer.render(scene, camera);
+            })();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = innerWidth / innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(innerWidth, innerHeight);
+            });
+        };
+
+        /* ---- KINETIC TYPOGRAPHY (repulsion — h2 only, h1 gets whole-element 3D tilt) ---- */
+        window.initKineticText = () => {
+            if (window.matchMedia('(hover: none)').matches || !window.gsap) return;
+
+            // H1: whole-element 3D tilt, NO char splitting
+            const h1 = document.querySelector('#home-section h1');
+            if (h1) {
+                h1.addEventListener('mousemove', e => {
+                    const r = h1.getBoundingClientRect();
+                    const dx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                    const dy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                    gsap.to(h1, {
+                        rotationY: dx * 8, rotationX: -dy * 4,
+                        transformPerspective: 900, duration: 0.5, ease: 'power2.out', overwrite: 'auto'
+                    });
+                });
+                h1.addEventListener('mouseleave', () => {
+                    gsap.to(h1, {
+                        rotationY: 0, rotationX: 0, duration: 1.2,
+                        ease: 'elastic.out(1,0.5)', overwrite: 'auto'
+                    });
+                });
+            }
+
+            // Section h2s: char-level repulsion
+            const h2Sels = [
+                '#about-section h2',
+                '#certifications-section h2',
+                '#projects-section h2',
+                '#research-section h2',
+                '#contact-section h2',
+            ];
+            h2Sels.forEach(sel => {
+                const el = document.querySelector(sel);
+                if (!el || el.querySelector('.char')) return;
+                const raw = el.textContent.trim();
+                el.innerHTML = raw.split('').map(c =>
+                    c === ' ' ? '\u00A0' : `<span class="char">${c}</span>`
+                ).join('');
+            });
+
+            const allChars = document.querySelectorAll('.char');
+            window.addEventListener('mousemove', e => {
+                allChars.forEach(ch => {
+                    const r = ch.getBoundingClientRect();
+                    const cx = r.left + r.width / 2;
+                    const cy = r.top + r.height / 2;
+                    const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+                    const max = 150;
+                    if (dist < max) {
+                        const power = (max - dist) / max;
+                        gsap.to(ch, {
+                            x: (cx - e.clientX) * power * 0.45,
+                            y: (cy - e.clientY) * power * 0.45,
+                            scale: 1 + power * 0.4, color: '#ffffff',
+                            duration: 0.3, ease: 'power2.out'
+                        });
+                    } else {
+                        gsap.to(ch, {
+                            x: 0, y: 0, scale: 1, color: 'inherit',
+                            duration: 0.6, ease: 'elastic.out(1,0.3)'
+                        });
+                    }
+                });
+            }, { passive: true });
+        };
+
+        /* ---- MAGNETIC ELEMENTS (two-layer parallax from example) ---- */
+        window.initMagnetic = () => {
+            if (window.matchMedia('(hover: none)').matches || !window.gsap) return;
+            // Add magnetic-wrap class to target elements
+            const magnetSels = [
+                ...document.querySelectorAll('nav .nav-btn'),
+                ...document.querySelectorAll('footer a'),
+                ...document.querySelectorAll('#home-section button'),
+                ...document.querySelectorAll('#home-section .flex a.glass-card'),
+            ];
+            magnetSels.forEach(wrap => {
+                wrap.addEventListener('mousemove', e => {
+                    const rect = wrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    // outer element glides 0.3x
+                    gsap.to(wrap, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
+                    // inner content (first child span/text node) glides 0.55x for parallax depth
+                    const inner = wrap.querySelector('i, span, svg') || wrap.firstElementChild;
+                    if (inner) gsap.to(inner, { x: x * 0.55, y: y * 0.55, duration: 0.4, ease: 'power2.out' });
+                });
+                wrap.addEventListener('mouseleave', () => {
+                    const inner = wrap.querySelector('i, span, svg') || wrap.firstElementChild;
+                    gsap.to(wrap, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+                    if (inner) gsap.to(inner, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+                });
+            });
+        };
+
+        /* ---- CARD 3D TILT ---- */
+        window.initCardTilt = () => {
+            if (window.matchMedia('(hover: none)').matches) return;
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.style.transformStyle = 'preserve-3d';
+                card.addEventListener('mousemove', e => {
+                    const r = card.getBoundingClientRect();
+                    const dx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+                    const dy = ((e.clientY - r.top) / r.height - 0.5) * 2;
+                    card.style.transform =
+                        `perspective(900px) rotateX(${-dy * 5}deg) rotateY(${dx * 5}deg) translateY(-8px)`;
+                });
+                card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+            });
+        };
+
+        // ==============================================
+        //  INITIALIZE ALL PREMIUM MODULES
+        // ==============================================
+        window.addEventListener('load', () => {
+            window.renderApp();
+            startPreloader();
+
+            // Core
+            initLenis();
+            initScrollProgress();
+            initCursor();
+            initParallax();
+
+            // Three.js background — load Three.js then init
+            const threeScript = document.createElement('script');
+            threeScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+            threeScript.onload = () => initThreeBackground();
+            document.head.appendChild(threeScript);
+
+            // DOM-dependent modules
+            setTimeout(() => {
+                initKineticText();
+                initMagnetic();
+                initCardTilt();
+                initHeroExtras();
+            }, 200);
+        });
+
+        /* ---- HERO EXTRAS (typewriter, counters, bars, easter egg) ---- */
+        window.initHeroExtras = () => {
+            // 1. Typewriter role rotator
+            const roles = [
+                'Data Engineer', 'Cloud Architect', 'ML Enthusiast',
+                'AWS Practitioner', 'Big Data Builder', 'Python Developer'
+            ];
+            let ri = 0, ci = 0, deleting = false;
+            const tw = document.getElementById('typewriter-role');
+            if (tw) {
+                const tick = () => {
+                    const word = roles[ri % roles.length];
+                    if (!deleting) {
+                        tw.textContent = word.slice(0, ++ci);
+                        if (ci === word.length) { deleting = true; setTimeout(tick, 1400); return; }
+                    } else {
+                        tw.textContent = word.slice(0, --ci);
+                        if (ci === 0) { deleting = false; ri++; }
+                    }
+                    setTimeout(tick, deleting ? 50 : 90);
+                };
+                tick();
+            }
+
+            // 2. Animated count-up for [data-count] elements
+            const countEls = document.querySelectorAll('[data-count]');
+            const countObs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    const target = +el.dataset.count;
+                    const suffix = el.dataset.suffix || '';
+                    const duration = 1600;
+                    const step = 16;
+                    const steps = duration / step;
+                    let current = 0;
+                    const inc = target / steps;
+                    const timer = setInterval(() => {
+                        current = Math.min(current + inc, target);
+                        el.textContent = Math.floor(current) + suffix;
+                        if (current >= target) clearInterval(timer);
+                    }, step);
+                    countObs.unobserve(el);
+                });
+            }, { threshold: 0.5 });
+            countEls.forEach(el => countObs.observe(el));
+
+            // 3. Animate hero skill bars
+            const barObs = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.querySelectorAll('.hero-bar').forEach((bar, i) => {
+                        setTimeout(() => {
+                            bar.style.transition = 'width 1.2s cubic-bezier(0.4,0,0.2,1)';
+                            bar.style.width = bar.dataset.width;
+                        }, i * 180);
+                    });
+                    barObs.unobserve(entry.target);
+                });
+            }, { threshold: 0.3 });
+            const heroCard = document.querySelector('#home-section .aspect-square');
+            if (heroCard) barObs.observe(heroCard);
+
+            // 4. KONAMI CODE Easter Egg ⬆⬆⬇⬇◀▶◀▶ B A
+            const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+            let ki = 0;
+            document.addEventListener('keydown', e => {
+                if (e.key === konami[ki]) {
+                    ki++;
+                    if (ki === konami.length) {
+                        ki = 0;
+                        _showEasterEgg();
+                    }
+                } else { ki = 0; }
+            });
+        };
+
+        function _showEasterEgg() {
+            const term = document.getElementById('easter-terminal');
+            const lines = document.getElementById('terminal-lines');
+            if (!term || !lines) return;
+            term.classList.remove('hidden');
+            lines.innerHTML = '';
+            const msgs = [
+                { t: 0, c: 'text-teal-400', m: '$ whoami' },
+                { t: 400, c: 'text-white', m: 'Lokesh Boddu — Data Engineer & Cloud Architect' },
+                { t: 800, c: 'text-teal-400', m: '$ cat skills.txt' },
+                { t: 1200, c: 'text-slate-300', m: 'Python  AWS  PySpark  Kafka  TensorFlow  Docker  SQL' },
+                { t: 1600, c: 'text-teal-400', m: '$ uptime' },
+                { t: 2000, c: 'text-slate-300', m: '500+ hrs of problem solving, 0 hrs of giving up.' },
+                { t: 2400, c: 'text-teal-400', m: '$ fortune' },
+                { t: 2800, c: 'text-yellow-400', m: '✨ "Data is the new oil — I build the refinery."' },
+                { t: 3200, c: 'text-teal-400', m: '$ echo $STATUS' },
+                { t: 3600, c: 'text-emerald-400', m: '● OPEN TO WORK  |  Hyderabad, India  |  Remote OK' },
+                { t: 4000, c: 'text-slate-500', m: '// click anywhere to close this terminal' },
+            ];
+            msgs.forEach(({ t, c, m }) => {
+                setTimeout(() => {
+                    const p = document.createElement('p');
+                    p.className = c + ' leading-relaxed';
+                    p.textContent = m;
+                    lines.appendChild(p);
+                }, t);
+            });
+        }
+
+        class SectionHeader extends HTMLElement { connectedCallback() { this.innerHTML = `<h3 class="text-[11px] font-black uppercase tracking-[0.5em] text-teal-600 border-b-2 border-slate-100 pb-3 mb-10 text-left">${this.getAttribute('title')}</h3>`; } }
+        if (!customElements.get('section-header')) customElements.define('section-header', SectionHeader);
+    </script>
+</body>
+
+</html>
